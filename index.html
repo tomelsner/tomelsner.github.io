@@ -3,6 +3,17 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Test</title>
+	<script>
+    function whenRNPostMessageReady(cb) {
+        if (postMessage.length === 1) cb();
+        else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
+    }
+
+
+    whenRNPostMessageReady(function() {
+        postMessage('hi react native!!!');
+    });
+</script>
 </head>
 <body>
 <a onClick="window.postMessage('This can only be a string');">Send message</a>
