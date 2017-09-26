@@ -35,12 +35,11 @@ function awaitPostMessage() {
     while (queue.length > 0) window.postMessage(queue.shift());
   }
 }
+awaitPostMessage();
 
-window.onLoad = awaitPostMessage; // Call this only once in your Web Code.
-
-/* After you can call window.postMessage many times, and as soon as RN Message Bridge is ready - messages delivered */
-window.postMessage('Once :) ');
-window.postMessage('Twice :) ');
+window.onLoad = function(){
+	window.postMessage('on load ');
+}; 
 
 
 </script>
