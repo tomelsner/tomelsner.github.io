@@ -56,8 +56,6 @@ function waitForBridge() {
        }
     }
     
-    window.onload = waitForBridge;
-
 
 
 
@@ -65,7 +63,7 @@ function waitForBridge() {
 </script>
 
 </head>
-<body>
-<a onClick="window.postMessage('yes');">Post message 7</a>
+<body onLoad="waitForBridge();">
+<a onClick="window.postMessage('yes');">Post message 8</a>
 </body>
 </html>
