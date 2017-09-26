@@ -45,7 +45,7 @@ function waitForBridge() {
        //the react native postMessage has only 1 parameter
        //while the default one has 2, so check the signature
        //of the function
-       alert(window.postMessage.length);
+       alert(window.postMessage);
        
        if (window.postMessage.length !== 1){
          
@@ -65,6 +65,6 @@ function waitForBridge() {
 
 </head>
 <body onLoad="waitForBridge();">
-<a onClick="window.postMessage('yes');">Post message 9</a>
+<a onClick="window.postMessage('yes');">Post message 10</a>
 </body>
 </html>
