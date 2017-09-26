@@ -13,7 +13,7 @@
 
 
     
-
+/*
 window.onLoad = function(){
 	alert('window on load');
 	setTimeout(function () {
@@ -29,19 +29,43 @@ window.onLoad = function(){
     });
 	
 }; 
-
+*/
 
 
 	window.postMessage('send to react native from index inline, no delay', '*')
 
-	setTimeout(function () {
+	/*setTimeout(function () {
 		window.postMessage('send to react native from index inline, delay 200 milliscond', '*')
 	}, 200);
+	*/
+	
+
+function waitForBridge() {
+      
+       //the react native postMessage has only 1 parameter
+       //while the default one has 2, so check the signature
+       //of the function
+       
+       if (window.postMessage.length !== 1){
+         
+         setTimeout(waitForBridge, 200);
+       }
+       else {
+         
+         window.postMessage('abc');
+       }
+    }
+    
+    window.onload = waitForBridge;
+
+
+
+
 
 </script>
 
 </head>
 <body>
-<a onClick="window.postMessage('yes');">Post message 6</a>
+<a onClick="window.postMessage('yes');">Post message 7</a>
 </body>
 </html>
