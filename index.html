@@ -38,7 +38,9 @@ function awaitPostMessage() {
 awaitPostMessage();
 
 window.onLoad = function(){
-	window.postMessage('on load ');
+	setTimeout(function () {
+		postMessage('send to react native from index inline after onload, delay 0 milliscond', '*')
+	}, 0);
 }; 
 
 
