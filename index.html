@@ -7,11 +7,13 @@
 <script type="text/javascript">
 
 	function whenRNPostMessageReady(cb) {
-        if (window.postMessage.length === 1) cb();
+        if (window.postMessage.length === 3) cb();
         else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
     }
 
-
+	whenRNPostMessageReady(function() {
+        window.postMessage('hi react native!!!');
+    });
     
 /*
 window.onLoad = function(){
@@ -23,16 +25,13 @@ window.onLoad = function(){
 		window.postMessage('send to react native from index inline after onload, delay 200 milliscond', '*')
 	}, 200);
 	
-	whenRNPostMessageReady(function() {
-    	alert('yep');
-        window.postMessage('hi react native!!!');
-    });
+	
 	
 }; 
 */
 
 
-	window.postMessage('send to react native from index inline, no delay', '*')
+	//window.postMessage('send to react native from index inline, no delay', '*')
 
 	/*setTimeout(function () {
 		window.postMessage('send to react native from index inline, delay 200 milliscond', '*')
@@ -40,23 +39,6 @@ window.onLoad = function(){
 	*/
 	
 
-function waitForBridge() {
-      
-       //the react native postMessage has only 1 parameter
-       //while the default one has 2, so check the signature
-       //of the function
-       alert(window.postMessage);
-       
-       if (window.postMessage.length !== 1){
-         
-         setTimeout(waitForBridge, 200);
-       }
-       else {
-         
-         window.postMessage('abc');
-       }
-    }
-    
 
 
 
@@ -64,7 +46,7 @@ function waitForBridge() {
 </script>
 
 </head>
-<body onLoad="waitForBridge();">
-<a onClick="window.postMessage('yes');">Post message 10</a>
+<body>
+<a onClick="window.postMessage('yes');">Post message 11</a>
 </body>
 </html>
