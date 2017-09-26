@@ -15,14 +15,14 @@ function awaitPostMessage() {
 	Object.defineProperty(window, "postMessage", {
 	  configurable: true,
 	  enumerable: true,
-	  get() {
-		return currentPostMessageFn;
-	  },
-	  set(fn) {
-		currentPostMessageFn = fn;
-		isReactNativePostMessageReady = true;
-		setTimeout(sendQueue, 0);
-	  }
+	  get: function () {
+		  return currentPostMessageFn;
+		},
+		set: function (fn) {
+		  currentPostMessageFn = fn;
+		  isReactNativePostMessageReady = true;
+		  setTimeout(sendQueue, 0);
+		}
 	});
   }
 
