@@ -6,48 +6,44 @@
 <script>
 
 function awaitPostMessage() {
-  var isReactNativePostMessageReady = !!window.originalPostMessage;
+  var isReactNativePostMessageReady = false;
   var queue = [];
   var currentPostMessageFn = function store(message) {
-    if (queue.length > 100) queue.shift();
-    queue.push(message);
+	queue.push(message);
   };
   if (!isReactNativePostMessageReady) {
-    var originalPostMessage = window.postMessage;
-    Object.defineProperty(window, 'postMessage', {
-      configurable: true,
-      enumerable: true,
-      get: function () {
-        return currentPostMessageFn;
-      },
-      set: function (fn) {
-        currentPostMessageFn = fn;
-        isReactNativePostMessageReady = true;
-        setTimeout(sendQueue, 0);
-      }
-    });
-    window.postMessage.toString = function () {
-      return String(originalPostMessage);
-    };
+	Object.defineProperty(window, "postMessage", {
+	  configurable: true,
+	  enumerable: true,
+	  get() {
+		return currentPostMessageFn;
+	  },
+	  set(fn) {
+		currentPostMessageFn = fn;
+		isReactNativePostMessageReady = true;
+		setTimeout(sendQueue, 0);
+	  }
+	});
   }
 
   function sendQueue() {
-    while (queue.length > 0) window.postMessage(queue.shift());
+	while (queue.length > 0) window.postMessage(queue.shift());
   }
 }
 awaitPostMessage();
 
 window.onLoad = function(){
 	setTimeout(function () {
-		postMessage('send to react native from index inline after onload, delay 0 milliscond', '*')
+		window.postMessage('send to react native from index inline after onload, delay 0 milliscond', '*')
 	}, 0);
 	setTimeout(function () {
-		postMessage('send to react native from index inline after onload, delay 200 milliscond', '*')
+		window.postMessage('send to react native from index inline after onload, delay 200 milliscond', '*')
 	}, 200);
 }; 
+	window.postMessage('send to react native from index inline, no delay', '*')
 
 	setTimeout(function () {
-		postMessage('send to react native from index inline, delay 200 milliscond', '*')
+		window.postMessage('send to react native from index inline, delay 200 milliscond', '*')
 	}, 200);
 
 </script>
