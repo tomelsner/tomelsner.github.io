@@ -4,14 +4,44 @@
 	<meta charset="utf-8" />
 	<title>Test</title>
 <script>
-	function whenRNPostMessageReady(cb) {
-	    if (postMessage.length === 1) cb();
-	    else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
-	}
 
-	whenRNPostMessageReady(function() {
-	    window.postMessage('yes');
-	});
+function awaitPostMessage() {
+  var isReactNativePostMessageReady = !!window.originalPostMessage;
+  var queue = [];
+  var currentPostMessageFn = function store(message) {
+    if (queue.length > 100) queue.shift();
+    queue.push(message);
+  };
+  if (!isReactNativePostMessageReady) {
+    var originalPostMessage = window.postMessage;
+    Object.defineProperty(window, 'postMessage', {
+      configurable: true,
+      enumerable: true,
+      get: function () {
+        return currentPostMessageFn;
+      },
+      set: function (fn) {
+        currentPostMessageFn = fn;
+        isReactNativePostMessageReady = true;
+        setTimeout(sendQueue, 0);
+      }
+    });
+    window.postMessage.toString = function () {
+      return String(originalPostMessage);
+    };
+  }
+
+  function sendQueue() {
+    while (queue.length > 0) window.postMessage(queue.shift());
+  }
+}
+
+awaitPostMessage(); // Call this only once in your Web Code.
+
+/* After you can call window.postMessage many times, and as soon as RN Message Bridge is ready - messages delivered */
+window.postMessage('Once :) ');
+
+
 </script>
 
 </head>
