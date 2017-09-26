@@ -12,19 +12,26 @@
     }
 
 
-    whenRNPostMessageReady(function() {
-    	alert('yep');
-        window.postMessage('hi react native!!!');
-    });
+    
 
 window.onLoad = function(){
+	alert('window on load');
 	setTimeout(function () {
 		window.postMessage('send to react native from index inline after onload, delay 0 milliscond', '*')
 	}, 0);
 	setTimeout(function () {
 		window.postMessage('send to react native from index inline after onload, delay 200 milliscond', '*')
 	}, 200);
+	
+	whenRNPostMessageReady(function() {
+    	alert('yep');
+        window.postMessage('hi react native!!!');
+    });
+	
 }; 
+
+
+
 	window.postMessage('send to react native from index inline, no delay', '*')
 
 	setTimeout(function () {
@@ -35,6 +42,6 @@ window.onLoad = function(){
 
 </head>
 <body>
-<a onClick="window.postMessage('yes');">Post message 5</a>
+<a onClick="window.postMessage('yes');">Post message 6</a>
 </body>
 </html>
