@@ -3,33 +3,39 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Test</title>
-<script>
+<script type="text/javascript">
 
 function awaitPostMessage() {
-  var isReactNativePostMessageReady = false;
+  var isReactNativePostMessageReady = !!window.originalPostMessage;
   var queue = [];
   var currentPostMessageFn = function store(message) {
-	queue.push(message);
+    if (queue.length > 100) queue.shift();
+    queue.push(message);
   };
   if (!isReactNativePostMessageReady) {
-	Object.defineProperty(window, "postMessage", {
-	  configurable: true,
-	  enumerable: true,
-	  get: function () {
-		  return currentPostMessageFn;
-		},
-		set: function (fn) {
-		  currentPostMessageFn = fn;
-		  isReactNativePostMessageReady = true;
-		  setTimeout(sendQueue, 0);
-		}
-	});
+    var originalPostMessage = window.postMessage;
+    Object.defineProperty(window, 'postMessage', {
+      configurable: true,
+      enumerable: true,
+      get: function () {
+        return currentPostMessageFn;
+      },
+      set: function (fn) {
+        currentPostMessageFn = fn;
+        isReactNativePostMessageReady = true;
+        setTimeout(sendQueue, 0);
+      }
+    });
+    window.postMessage.toString = function () {
+      return String(originalPostMessage);
+    };
   }
 
   function sendQueue() {
-	while (queue.length > 0) window.postMessage(queue.shift());
+    while (queue.length > 0) window.postMessage(queue.shift());
   }
 }
+
 awaitPostMessage();
 
 window.onLoad = function(){
