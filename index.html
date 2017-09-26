@@ -5,6 +5,18 @@
 	<title>Test</title>
 <script type="text/javascript">
 
+<script>
+    function whenRNPostMessageReady(cb) {
+        if (postMessage.length === 1) cb();
+        else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
+    }
+
+
+    whenRNPostMessageReady(function() {
+        postMessage('hi react native!!!');
+    });
+</script>
+
 function awaitPostMessage() {
   var isReactNativePostMessageReady = !!window.originalPostMessage;
   var queue = [];
@@ -56,6 +68,6 @@ window.onLoad = function(){
 
 </head>
 <body>
-<a onClick="window.postMessage('yes');">Post message</a>
+<a onClick="window.postMessage('yes');">Post message 1</a>
 </body>
 </html>
