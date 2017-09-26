@@ -41,8 +41,14 @@ window.onLoad = function(){
 	setTimeout(function () {
 		postMessage('send to react native from index inline after onload, delay 0 milliscond', '*')
 	}, 0);
+	setTimeout(function () {
+		postMessage('send to react native from index inline after onload, delay 200 milliscond', '*')
+	}, 200);
 }; 
 
+	setTimeout(function () {
+		postMessage('send to react native from index inline, delay 200 milliscond', '*')
+	}, 200);
 
 </script>
 
