@@ -7,14 +7,14 @@
 <script type="text/javascript">
 
 	function whenRNPostMessageReady(cb) {
-        if (postMessage.length === 1) cb();
+        if (window.postMessage.length === 1) cb();
         else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
     }
 
 
     whenRNPostMessageReady(function() {
     	alert('yep');
-        postMessage('hi react native!!!');
+        window.postMessage('hi react native!!!');
     });
 
 window.onLoad = function(){
@@ -35,6 +35,6 @@ window.onLoad = function(){
 
 </head>
 <body>
-<a onClick="window.postMessage('yes');">Post message 4</a>
+<a onClick="window.postMessage('yes');">Post message 5</a>
 </body>
 </html>
