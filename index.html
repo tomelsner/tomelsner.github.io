@@ -3,20 +3,19 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Test</title>
-<script>
-    function whenRNPostMessageReady(cb) {
+
+<script type="text/javascript">
+
+	function whenRNPostMessageReady(cb) {
         if (postMessage.length === 1) cb();
         else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
     }
 
 
     whenRNPostMessageReady(function() {
+    	alert('yep');
         postMessage('hi react native!!!');
     });
-</script>
-<script type="text/javascript">
-
-
 
 window.onLoad = function(){
 	setTimeout(function () {
@@ -36,6 +35,6 @@ window.onLoad = function(){
 
 </head>
 <body>
-<a onClick="window.postMessage('yes');">Post message 3</a>
+<a onClick="window.postMessage('yes');">Post message 4</a>
 </body>
 </html>
