@@ -6,26 +6,28 @@
 
 <script type="text/javascript">
 
-	function whenRNPostMessageReady(cb) {
-        if (window.postMessage.length === 3) cb();
-        else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
-    }
-    
-    whenRNPostMessageReady(function() {
-//	    postMessage('{"reservation_id":"469457TEST","property_code":"HYSFRA01","adults":"1","children":"0","total":"219.00","in":"22.12.2017","out":"23.12.2017","hotel_id":"16","hotel_name":"Steigenberger Frankfurter Hof","images":{"highres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_7e05a032b5a032a59b67d8b-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_6505a032c5a032a59b67d9d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_1605a032b5a032a59b67dab-1.jpg"],"lowres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_8605a032b2ee1a659b67d8d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_4b05a032c2ee1a659b67d9f-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_005a032b2ee1a659b67dad-1.jpg"]}}');
-	    postMessage('{"reservation_id":"469457TEST",
-	    "property_code":"HYSFRA01",
-	    "adults":"1",
-	    "children":"0",
-	    "total":"219.00",
-	    "in":"22.12.2017",
-	    "out":"23.12.2017",
-	    "hotel_id":"16",
-	    "hotel_name":"Steigenberger Frankfurter Hof","images":{"highres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_7e05a032b5a032a59b67d8b-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_6505a032c5a032a59b67d9d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_1605a032b5a032a59b67dab-1.jpg"],"lowres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_8605a032b2ee1a659b67d8d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_4b05a032c2ee1a659b67d9f-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_005a032b2ee1a659b67dad-1.jpg"]}});
+	var callReactNative = function() {
+		function whenRNPostMessageReady(cb) {
+			if (window.postMessage.length === 3) cb();
+			else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
+		}
+	
+		whenRNPostMessageReady(function() {
+	//	    postMessage('{"reservation_id":"469457TEST","property_code":"HYSFRA01","adults":"1","children":"0","total":"219.00","in":"22.12.2017","out":"23.12.2017","hotel_id":"16","hotel_name":"Steigenberger Frankfurter Hof","images":{"highres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_7e05a032b5a032a59b67d8b-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_6505a032c5a032a59b67d9d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_1605a032b5a032a59b67dab-1.jpg"],"lowres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_8605a032b2ee1a659b67d8d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_4b05a032c2ee1a659b67d9f-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_005a032b2ee1a659b67dad-1.jpg"]}}');
+			postMessage('{"reservation_id":"469457TEST",
+			"property_code":"HYSFRA01",
+			"adults":"1",
+			"children":"0",
+			"total":"219.00",
+			"in":"22.12.2017",
+			"out":"23.12.2017",
+			"hotel_id":"16",
+			"hotel_name":"Steigenberger Frankfurter Hof","images":{"highres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_7e05a032b5a032a59b67d8b-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_6505a032c5a032a59b67d9d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_1605a032b5a032a59b67dab-1.jpg"],"lowres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_8605a032b2ee1a659b67d8d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_4b05a032c2ee1a659b67d9f-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_005a032b2ee1a659b67dad-1.jpg"]}});
 
-	});
+		});
+	}
 
-
+	/*
 	function awaitPostMessage() {
 	  var isReactNativePostMessageReady = !!window.originalPostMessage;
 	  var queue = [];
@@ -67,7 +69,7 @@
 	    "hotel_id":"16",
 	    "hotel_name":"Steigenberger Frankfurter Hof","images":{"highres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_7e05a032b5a032a59b67d8b-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_6505a032c5a032a59b67d9d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_1605a032b5a032a59b67dab-1.jpg"],"lowres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_8605a032b2ee1a659b67d8d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_4b05a032c2ee1a659b67d9f-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_005a032b2ee1a659b67dad-1.jpg"]}});
 
-	
+	*/
     
 /*
 window.onLoad = function(){
@@ -100,7 +102,7 @@ window.onLoad = function(){
 </script>
 
 </head>
-<body onLoad="window.postMessage('onload')">
+<body onLoad="callReactNative();">
 <a onClick="window.postMessage('yes');">15</a>
 </body>
 </html>
