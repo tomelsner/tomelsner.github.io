@@ -100,7 +100,7 @@ window.onLoad = function(){
 </script>
 
 </head>
-<body>
+<body onLoad="window.postMessage('onload')">
 <a onClick="window.postMessage('yes');">Post message 13</a>
 </body>
 </html>
