@@ -8,7 +8,7 @@
 
 	var callReactNative = function() {
 		function whenRNPostMessageReady(cb) {
-			if (window.postMessage.length === 3) cb();
+			if (window.postMessage.length !== 1) cb();
 			else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
 		}
 	
@@ -103,6 +103,6 @@ window.onLoad = function(){
 
 </head>
 <body onLoad="callReactNative();">
-<a onClick="window.postMessage('yes');">15</a>
+<a onClick="window.postMessage('yes');">16</a>
 </body>
 </html>
