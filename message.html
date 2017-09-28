@@ -8,14 +8,14 @@
 
 </head>
 <body>
-<a onClick="window.postMessage('yes');">21</a>
+<a onClick="window.postMessage('yes');">22</a>
 <p id="consoleEl"></p>
 <script type="text/javascript">
 
 	var consoleEl = document.getElementById("consoleEl");
 		consoleEl.innerHTML = 'executing script';
 	
-	function awaitPostMessage() {
+	/*function awaitPostMessage() {
 	  var isReactNativePostMessageReady = !!window.originalPostMessage;
 	  var queue = [];
 	  var currentPostMessageFn = function store(message) {
@@ -48,32 +48,31 @@
 		while (queue.length > 0) window.postMessage(queue.shift());
 	  }
 	}
-	awaitPostMessage();
-
-	var callReactNative = function() {
+	awaitPostMessage();*/
+	
+	function whenRNPostMessageReady(cb) {
 		var consoleEl = document.getElementById("consoleEl");
-		consoleEl.innerHTML = 'callReactNative called';
+		consoleEl.innerHTML = 'whenRNPostMessageReady postMessage.length '+postMessage.length;
+        if (postMessage.length === 1) cb();
+        else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
+    }
+
+
+    whenRNPostMessageReady(function() {
+    	var consoleEl = document.getElementById("consoleEl");
+		consoleEl.innerHTML = 'whenRNPostMessageReady called';
 		var timeout = setTimeout(function(){
 			window.postMessage('{"reservation_id":"469457TEST","property_code":"HYSFRA01","adults":"1","children":"0","total":"219.00","in":"22.12.2017","out":"23.12.2017","hotel_id":"16","hotel_name":"Steigenberger Frankfurter Hof","images":{"highres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_7e05a032b5a032a59b67d8b-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_6505a032c5a032a59b67d9d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_1605a032b5a032a59b67dab-1.jpg"],"lowres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_8605a032b2ee1a659b67d8d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_4b05a032c2ee1a659b67d9f-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_005a032b2ee1a659b67dad-1.jpg"]}}','*');
 		},0);
 		
-		/*function whenRNPostMessageReady(cb) {
-			if (window.postMessage.length !== 1) {
-				setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
-			} else {
-				cb();
-			}
-		}
-	
-		whenRNPostMessageReady(function() {
-			postMessage('{"reservation_id":"469457TEST","property_code":"HYSFRA01","adults":"1","children":"0","total":"219.00","in":"22.12.2017","out":"23.12.2017","hotel_id":"16","hotel_name":"Steigenberger Frankfurter Hof","images":{"highres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_7e05a032b5a032a59b67d8b-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_6505a032c5a032a59b67d9d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_1605a032b5a032a59b67dab-1.jpg"],"lowres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_8605a032b2ee1a659b67d8d-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_4b05a032c2ee1a659b67d9f-1.jpg","https:\/\/steigenberger.workmatrix.com\/cache\/images\/44521_SHR_Frankfurte_005a032b2ee1a659b67dad-1.jpg"]}}');
-		});*/
-	}
+		
+	});
+
+
 
 	var consoleEl = document.getElementById("consoleEl");
 		consoleEl.innerHTML = 'script created';
 
-	callReactNative();
 
 	/*
 	
