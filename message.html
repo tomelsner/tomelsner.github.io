@@ -9,8 +9,11 @@
 	var callReactNative = function() {
 	
 		function whenRNPostMessageReady(cb) {
-			if (window.postMessage.length !== 1) cb();
-			else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
+			if (window.postMessage.length !== 1) {
+				setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
+			} else {
+				cb();
+			}
 		}
 	
 		whenRNPostMessageReady(function() {
