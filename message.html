@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<a onClick="window.postMessage('yes');">22</a>
+<a onClick="window.postMessage('yes');">23</a>
 <p id="consoleEl"></p>
 <script type="text/javascript">
 
@@ -53,7 +53,7 @@
 	function whenRNPostMessageReady(cb) {
 		var consoleEl = document.getElementById("consoleEl");
 		consoleEl.innerHTML = 'whenRNPostMessageReady postMessage.length '+postMessage.length;
-        if (postMessage.length === 1) cb();
+        if (postMessage.length === 3) cb();
         else setTimeout(function() { whenRNPostMessageReady(cb) }, 100);
     }
 
