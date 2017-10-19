@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<a onClick="window.postMessage('yes');">24</a>
+<a onClick="window.postMessage('yes');">25</a>
 <p id="consoleEl"></p>
 <script type="text/javascript">
 
@@ -18,8 +18,10 @@
 	var consoleEl = document.getElementById("consoleEl");
 		consoleEl.innerHTML = 'executing script';
 	
+		
 	if (window.webkit.messageHandlers != undefined) {
-		window.webkit.messageHandlers.SteigenbergerApp.postMessage({"initalLoad":"true"});
+		consoleEl.innerHTML = 'window.webkit.messageHandlers != undfined';
+		window.webkit.messageHandlers.reactNative.postMessage({"initalLoad":"true"});
 	}
 
 	/*	
