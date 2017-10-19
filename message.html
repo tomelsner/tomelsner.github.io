@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<a onClick="window.postMessage('yes');">25</a>
+<a onClick="window.postMessage('yes');">26</a>
 <p id="consoleEl"></p>
 <script type="text/javascript">
 
@@ -21,7 +21,7 @@
 		
 	if (window.webkit.messageHandlers != undefined) {
 		consoleEl.innerHTML = 'window.webkit.messageHandlers != undfined';
-		window.webkit.messageHandlers.reactNative.postMessage({"initalLoad":"true"});
+		window.webkit.messageHandlers.reactNative.postMessage('{"initalLoad":"true"}');
 	}
 
 	/*	
