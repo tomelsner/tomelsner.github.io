@@ -22,6 +22,9 @@
 	if (window.webkit.messageHandlers != undefined) {
 		consoleEl.innerHTML = 'window.webkit.messageHandlers != undfined';
 		window.webkit.messageHandlers.reactNative.postMessage({"initalLoad":"true"});
+		window.webkit.messageHandlers.reactNative.postMessage({ 
+			"reservation_id":"470087TEST","property_code":"HYSFRA14","adults":"2","children":"0","total":"139.00","in":"20.10.2017","out":"21.10.2017","hotel_id":"10","hotel_name":"Steigenberger Airport Hotel Frankfurt","images":{"highres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44514_SHR_AirportHot_a305a032b5a032a59b678a3-1.jpg"],"lowres":["https:\/\/steigenberger.workmatrix.com\/cache\/images\/44514_SHR_AirportHot_a305a032b2ee1a659b678a6-1.jpg"] }
+		});
 	}
 
 	/*	
